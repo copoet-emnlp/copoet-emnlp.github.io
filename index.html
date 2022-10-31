@@ -22,7 +22,7 @@
           <div class="d-flex flex-wrap justify-content-center">
             <div class="btn btn-group">
               <a class="btn btn-lg btn-info" href="https://arxiv.org/abs/2210.13669" role="button" title="Paper">Paper</a>
-              <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#downloadDataset">Dataset</button>
+              <a class="btn btn-lg btn-info" href="https://drive.google.com/drive/u/1/folders/1TRuo-1wQOKBvMyaitRAMzgTmv9PVFDaH" title="Data">Paper</a>
               <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Code
               </button>
@@ -32,66 +32,25 @@
             </div>
           </div>
         </div>
-
-        <!-- Data download modal -->
-        <div class="modal fade" id="downloadDataset" tabindex="-1" aria-labelledby="downloadDatasetLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="downloadDatasetLabel">Data Transfer and Use Agreement</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                {{ license|safe }}
-              </div>
-              <div class="modal-footer">
-                {% if "dataset" in scopes %}
-                By clicking "Download Dataset" you are consenting to be bound by the above Agreement.
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-info" href="/data/download" role="button" title="Download Dataset">Download Dataset</a>
-                {% elif request.session.get("user", None) %}
-                <p>You must email the first author to request access before you can download the dataset.</p>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-info disabled" href="/" role="button" title="Download Dataset">Download Dataset</a>
-                {% else  %}
-                <p>You must be logged in before you can download the dataset.</p>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-info" href="/data/download" role="button" title="Download Dataset">Login/Create Account</a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!---section id="about">
         <h3>About</h3>
         <p>
-          Systems for story generation are asked to produce plausible and
-          enjoyable stories given an input context. This task is underspecified,
-          as a vast number of diverse stories can originate from a single input.
-          The large output space makes it difficult to build and evaluate story
-          generation models, as (1) existing datasets lack rich enough contexts
-          to meaningfully guide models, and (2) existing evaluations (both
-          crowdsourced and automatic) are unreliable for assessing long-form
-          creative text. To address these issues, we introduce a dataset and
-          evaluation platform built with
-          <a href="https://storium.com" class="text-info initialism">STORIUM</a>,
-          an online collaborative storytelling community. Our author-generated
-          dataset contains 6K lengthy stories (125M tokens) with fine-grained
-          natural language annotations, in the form of cards, interspersed
-          throughout each narrative, forming a robust source for guiding
-          models. Our evaluation platform is integrated directly with
-          <a href="https://storium.com" class="text-info initialism">STORIUM</a>,
-          where <i>real</i> authors can query a model for suggested story
-          continuations and then edit them. We provide a leaderboard with
-          automatic metrics computed over these edits, which correlate well
-          with both user ratings of generated stories and qualitative feedback
-          from semi-structured user interviews. We release both the dataset and
-          evaluation platform to spur more principled research into story
-          generation.
+          Recent work in training large language models (LLMs) to follow natural language 
+          instructions has opened up exciting opportunities for natural language interface
+          design. Building  on the prior success of LLMs in the realm of computer-assisted 
+          creativity, we aim to study if LLMs can improve the quality of usergenerated content
+          through collaboration. We present CoPoet, a collaborative poetry writing system. 
+          In contrast to auto-completing a user’s text, CoPoet is controlled by user instructions
+          that specify the attributes of the desired text, such as <i>Write a sentence about "love"</i>
+          or <i>Write a sentence ending in "fly"</i>. The core component of our system is a language
+          model finetuned on a diverse collection of instructions for poetry writing. Our model is not 
+          only competitive with publicly available LLMs trained on instructions (InstructGPT), but is 
+          also capable of satisfying unseen compositional instructions. A study with 15 qualified 
+          crowdworkers shows that users successfully write poems with CoPoet on diverse topics ranging from
+          <b>Monarchy</b> to <b>Climate change</b>. Further, the collaboratively written poems are preferred by third-party
+          evaluators over those written without the system
         </p>
         <div class="img-wrapper text-center">
           <img src="static/overview.svg" style="height: auto; width: 100%;">
