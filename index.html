@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include "headers.html" %}
+  </head>
+  <body>
+    {% include "scripts.html" %}
+    {% include "navbar.html" %}
+
+    <main role="main" class="container" style="max-width: 1024px;">
+      <section id="intro">
+        <div class="text-center">
+          <img src="/img/pablo.png" width="128px" height="128px"></img>
+          <h1 class="paper-title">Help me write a poem: Instruction Tuning as a Vehicle for Collaborative Poetry Writing</h1>
+        </div>
+        <div class="container">
+          <div class="d-flex flex-wrap justify-content-center">
+            <a class="navbar-brand m-3 storium-logo" href="https://tuhinjubcse.github.io/"></a>
+            <a class="navbar-brand m-3 umass-ngram-logo" href="https://vishakhpk.github.io/"></a>
+            <a class="navbar-brand m-3 storium-logo" href="https://hhexiy.github.io/"></a>
+          </div>
+          <!--div class="d-flex flex-wrap justify-content-center">
+            <div class="btn btn-group">
+              <a class="btn btn-lg btn-info" href="https://arxiv.org/abs/2010.01717" role="button" title="Paper">Paper</a>
+              <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#downloadDataset">Dataset</button>
+              <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Code
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="https://github.com/dojoteef/storium-gpt2">Model</a>
+                <a class="dropdown-item" href="https://github.com/dojoteef/storium-backend">Backend</a>
+                <a class="dropdown-item" href="https://github.com/dojoteef/storium-frontend">Frontend</a>
+            </div>
+          </div>
+        </div--->
+
+        <!-- Data download modal -->
+        <!--div class="modal fade" id="downloadDataset" tabindex="-1" aria-labelledby="downloadDatasetLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="downloadDatasetLabel">Data Transfer and Use Agreement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{ license|safe }}
+              </div>
+              <div class="modal-footer">
+                {% if "dataset" in scopes %}
+                By clicking "Download Dataset" you are consenting to be bound by the above Agreement.
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-info" href="/data/download" role="button" title="Download Dataset">Download Dataset</a>
+                {% elif request.session.get("user", None) %}
+                <p>You must email the first author to request access before you can download the dataset.</p>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-info disabled" href="/" role="button" title="Download Dataset">Download Dataset</a>
+                {% else  %}
+                <p>You must be logged in before you can download the dataset.</p>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-info" href="/data/download" role="button" title="Download Dataset">Login/Create Account</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h3>About</h3>
+        <p>
+          Systems for story generation are asked to produce plausible and
+          enjoyable stories given an input context. This task is underspecified,
+          as a vast number of diverse stories can originate from a single input.
+          The large output space makes it difficult to build and evaluate story
+          generation models, as (1) existing datasets lack rich enough contexts
+          to meaningfully guide models, and (2) existing evaluations (both
+          crowdsourced and automatic) are unreliable for assessing long-form
+          creative text. To address these issues, we introduce a dataset and
+          evaluation platform built with
+          <a href="https://storium.com" class="text-info initialism">STORIUM</a>,
+          an online collaborative storytelling community. Our author-generated
+          dataset contains 6K lengthy stories (125M tokens) with fine-grained
+          natural language annotations, in the form of cards, interspersed
+          throughout each narrative, forming a robust source for guiding
+          models. Our evaluation platform is integrated directly with
+          <a href="https://storium.com" class="text-info initialism">STORIUM</a>,
+          where <i>real</i> authors can query a model for suggested story
+          continuations and then edit them. We provide a leaderboard with
+          automatic metrics computed over these edits, which correlate well
+          with both user ratings of generated stories and qualitative feedback
+          from semi-structured user interviews. We release both the dataset and
+          evaluation platform to spur more principled research into story
+          generation.
+        </p>
+        <div class="img-wrapper text-center">
+          <img src="static/overview.svg" style="height: auto; width: 100%;">
+        </div>
+        <p style="line-height: 1.6rem;">
+          A high-level outline of our dataset and platform. In this example
+          from a real 
+          <a href="https://storium.com/game/night-witches--2/act-1/scene-2" class="text-info initialism">STORIUM</a>
+          game, the <span class="character">character</span>
+          <span class="character">ADIRA MAKAROVA</span> uses the
+          <span class="strength">strength card</span>
+          <span class="strength">DEADLY AIM</span> to
+          <span class="challenge">DISRUPT THE GERMANS</span>, a
+          <span class="challenge">challenge card</span>. Our model
+          conditions on the natural language annotations in the
+          <span class="scene-intro">scene intro</span>,
+          <span class="challenge">challenge</span> card,
+          <span class="strength">strength card</span>, and
+          <span class="character">character</span>,
+          along with the text of the
+          <span class="scene-entry">previous scene entry</span> (not shown)
+          to generate a suggested story continuation. Players may then edit the
+          model output, by <mark class="green">adding</mark> or <mark class="red">deleting</mark> text,
+          before publishing the entry. We collect these edits, using the
+          <mark>matched</mark> text as the basis of our USER metric. New models
+          can be added to the platform by simply implementing four methods:
+          <span class="texttt">startup</span>,
+          <span class="texttt">shutdown</span>,
+          <span class="texttt">preprocess</span>, and
+          <span class="texttt">generate</span>.
+        </p>
+      </section-->
+
+      <section id="paper">
+        <h3>Paper</h3>
+        If you use our dataset or evaluation platform, please cite:
+        <pre class="citation">
+@article{chakrabarty2022help,
+  title={Help me write a poem: Instruction Tuning as a Vehicle for Collaborative Poetry Writing},
+  author={Chakrabarty, Tuhin and Padmakumar, Vishakh and He, He},
+  journal={arXiv preprint arXiv:2210.13669},
+  year={2022}
+}</pre>
+        <div>
+          <a class="btn btn-info" href="https://arxiv.org/pdf/2210.13669.pdf" role="button" title="Paper">Read the paper</a>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h3>Contact</h3>
+        <p>
+          If you have any questions or comments about this work, please visit
+          email <a href="https://tuhinjubcse.github.io/" class="text-info">Tuhin</a>
+          or <a href="https://vishakhpk.github.io/" class="text-info">Vishakh</a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
