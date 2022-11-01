@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    {% include "headers.html" %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{gtag_id}}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '{{gtag_id}}');
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/images/pablo.png">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>CoPoet</title>
   </head>
   <body>
-    {% include "scripts.html" %}
-    {% include "navbar.html" %}
 
     <main role="main" class="container" style="max-width: 1024px;">
       <section id="intro">
         <div class="text-center">
-          <img src="pablo.png" width="128px" height="128px"></img>
+          <img src="images/pablo.png" width="25%"></img>
           <h1 class="paper-title">Help me write a poem: Instruction Tuning as a Vehicle for Collaborative Poetry Writing</h1>
         </div>
         <div class="container">
-          <div class="d-flex flex-wrap justify-content-center">
-            <a class="navbar-brand m-3 tuhin-logo" href="https://tuhinjubcse.github.io/"></a>
-            <a class="navbar-brand m-3 vishakh-logo" href="https://vishakhpk.github.io/"></a>
-            <a class="navbar-brand m-3 hehe-logo" href="https://hhexiy.github.io/"></a>
+          <div style="display:table-cell; vertical-align:middle; text-align:center">
+            <a href="https://tuhinjubcse.github.io/"><img width="10%" src="images/tuhin.jpeg"></a>
+            <a href="https://vishakhpk.github.io/"><img width="10%" src="images/vishakh.jpg"></a>
+            <a href="https://hhexiy.github.io/"><img width="11%" src="images/hehe.jpeg"></a>
           </div>
           <div class="d-flex flex-wrap justify-content-center">
             <div class="btn btn-group">
               <a class="btn btn-lg btn-info" href="https://arxiv.org/abs/2210.13669" role="button" title="Paper">Paper</a>
-              <a class="btn btn-lg btn-info" href="https://drive.google.com/drive/u/1/folders/1TRuo-1wQOKBvMyaitRAMzgTmv9PVFDaH" title="Data">Data</a>
-              <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Code
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="https://drive.google.com/drive/u/1/folders/1mjTji9wCfX4KA039wpyQLSMx2A9jLCwe">Model</a>
-                <a class="dropdown-item" href="https://github.com/vishakhpk/creative-instructions">Backend</a>
-            </div>
+              <a class="btn btn-lg btn-info" href="https://drive.google.com/drive/u/1/folders/1TRuo-1wQOKBvMyaitRAMzgTmv9PVFDaH" title="Data">Training Data</a>
+              <a class="btn btn-lg btn-info" href="https://drive.google.com/drive/u/1/folders/1mjTji9wCfX4KA039wpyQLSMx2A9jLCwe" title="Model Weights">Model Weights</a>
+              <a class="btn btn-lg btn-info" href="https://github.com/vishakhpk/creative-instructions" title="Code">Code</a>
           </div>
         </div>
       </section>
@@ -52,60 +61,34 @@
           <b>Monarchy</b> to <b>Climate change</b>. Further, the collaboratively written poems are preferred by third-party
           evaluators over those written without the system
         </p>
-        <!---
-        <div class="img-wrapper text-center">
-          <img src="static/overview.svg" style="height: auto; width: 100%;">
-        </div>
-        <p style="line-height: 1.6rem;">
-          A high-level outline of our dataset and platform. In this example
-          from a real 
-          <a href="https://storium.com/game/night-witches--2/act-1/scene-2" class="text-info initialism">STORIUM</a>
-          game, the <span class="character">character</span>
-          <span class="character">ADIRA MAKAROVA</span> uses the
-          <span class="strength">strength card</span>
-          <span class="strength">DEADLY AIM</span> to
-          <span class="challenge">DISRUPT THE GERMANS</span>, a
-          <span class="challenge">challenge card</span>. Our model
-          conditions on the natural language annotations in the
-          <span class="scene-intro">scene intro</span>,
-          <span class="challenge">challenge</span> card,
-          <span class="strength">strength card</span>, and
-          <span class="character">character</span>,
-          along with the text of the
-          <span class="scene-entry">previous scene entry</span> (not shown)
-          to generate a suggested story continuation. Players may then edit the
-          model output, by <mark class="green">adding</mark> or <mark class="red">deleting</mark> text,
-          before publishing the entry. We collect these edits, using the
-          <mark>matched</mark> text as the basis of our USER metric. New models
-          can be added to the platform by simply implementing four methods:
-          <span class="texttt">startup</span>,
-          <span class="texttt">shutdown</span>,
-          <span class="texttt">preprocess</span>, and
-          <span class="texttt">generate</span>.
-        </p>--->
+      </section>
+
+      <section id="demo">
+        <h3>Demo Video</h3>
+        <div style="display:table-cell; vertical-align:middle; text-align:center">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/pEAh4jb1lVU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div>
       </section>
 
       <section id="paper">
         <h3>Paper</h3>
         If you use our dataset or evaluation platform, please cite:
         <pre class="citation">
-@article{chakrabarty2022help,
-  title={Help me write a poem: Instruction Tuning as a Vehicle for Collaborative Poetry Writing},
-  author={Chakrabarty, Tuhin and Padmakumar, Vishakh and He, He},
-  journal={arXiv preprint arXiv:2210.13669},
-  year={2022}
-}</pre>
-        <div>
+            @article{chakrabarty2022help,
+                title={Help me write a poem: Instruction Tuning as a Vehicle for Collaborative Poetry Writing},
+                author={Chakrabarty, Tuhin and Padmakumar, Vishakh and He, He},
+                journal={arXiv preprint arXiv:2210.13669},
+                year={2022}
+            }</pre>
+        <!-- <div>
           <a class="btn btn-info" href="https://arxiv.org/pdf/2210.13669.pdf" role="button" title="Paper">Read the paper</a>
-        </div>
+        </div> -->
       </section>
 
       <section id="contact">
         <h3>Contact</h3>
         <p>
-          If you have any questions or comments about this work, please visit
-          email <a href="https://tuhinjubcse.github.io/" class="text-info">Tuhin</a>
-          or <a href="https://vishakhpk.github.io/" class="text-info">Vishakh</a>.
+          If you have any questions or comments about this work, please contact  <a href="https://tuhinjubcse.github.io/" class="text-info">Tuhin</a> or <a href="https://vishakhpk.github.io/" class="text-info">Vishakh</a>.
         </p>
       </section>
     </main>
