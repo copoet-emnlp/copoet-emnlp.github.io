@@ -1,16 +1,16 @@
 .container {
-    width:500px;
-    position: fixed;
+    width:600px;
+    position: relative;
 }
 
 .left-element {
     display: inline-block;
-    position: absolute;
+    position: relative;
     left: 0;
 }
 
 .right-element {
     display: inline-block;
-    position: absolute;
+    position: relative;
     right: 0;
 }
