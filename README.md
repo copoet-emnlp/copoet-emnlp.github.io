@@ -1,1 +1,1 @@
-# copoet-emnlp.github.io
+# Webpage for CoPoet Project
