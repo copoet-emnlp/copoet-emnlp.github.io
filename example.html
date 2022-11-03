@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Poem Example 1</title>
+        
+        <link rel="stylesheet" href="stylesheets/normalize.css">
+        <link rel="stylesheet" href="stylesheets/styles.css">
+        <style>
+        .collapsible {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            word-wrap: break-word; 
+            white-space: normal;
+        }
+        button { 
+            display: block;
+            width: 3em;
+            line-height: 2em;
+            padding: 0.2em;
+            margin:0.3em;	
+            border: 1px solid  #ccc ;  
+            border-radius: 8px;
+            -webkit-appearance:normal;
+            font-size: 1em;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        </style>
+
+    <body>
+        <article class='wrapper cf'><h1 id="responsive,-two-column-documentation-layout-with-markdown-and-css">Pivoting Our Destiny</h1>
+
+        <div class="begin-examples"></div>
+
+        <h3 id="h2-will-be-an-example-section-header.">Poem Draft.</h3>
+        <div class="highlight"><pre><code class="language-text" data-lang="text"><h3>Instructions</h3>
+        </code></pre></div>
+        <p> I'm not looking for a destiny.<br>But a better way out.<br>Destiny is a strange term<br>To describe what life is all about.<br>Life is meaningful only in the moment you live it.<br>So why hold onto grudges that make it hard to pivot<br>But the truth is all about making sense of who we are.<br>Cherish each moment and then you'll go really far.</p>
+
+        <div class="highlight"><pre><code class="language-text" data-lang="text">
+        <button type="button" class="collapsible">Write a poetic sentence that contains the word 'destiny'</button>
+        <div class="content">
+        <p>I'm not looking for a destiny.</p><br> <p>The savagery of one who carves his own destiny.</p>
+        </div>
+        <button type="button" class="collapsible">Write a metaphor about 'destiny'</button>
+        <div class="content">
+        <p>Destiny is a cruel mistress and I've been teasing her mercilessly.</p><br> <p>Destiny is a sham.</p>
+        </div>
+        <button type="button" class="collapsible">
+        Write a poetic sentence that contains the word 'meaningful'
+        </button>
+        <div class="content">
+        <p>Is meaningful only in the moment in which. </p><br> <p>Is life then not meaningful.</p>
+        </div>
+        <button type="button" class="collapsible">
+        Write a poetic sentence ending in 'about'
+        </button>
+        <div class="content">
+        <p>And what the genii of the place is all about. </p><br> <p>And if a man is walking about.</p>
+        </div>
+        </code></pre></div>
+        </article>
+
+        <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+            content.style.display = "none";
+            } else {
+            content.style.display = "block";
+            }
+            });
+        }
+        </script>
+    
+    </body>
+</html>
