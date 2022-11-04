@@ -54,7 +54,7 @@
         <h3 id="h2-will-be-an-example-section-header.">Poem Draft.</h3>
         <div class="highlight"><pre><code class="language-text" data-lang="text"><h3>Instructions</h3>
         </code></pre></div>
-        <p> I'm not looking for a destiny.<br>But a better way out.<br>Destiny is a strange term<br>To describe what life is all about.<br>Life is meaningful only in the moment you live it.<br>So why hold onto grudges that make it hard to pivot<br>But the truth is all about making sense of who we are.<br>Cherish each moment and then you'll go really far.</p>
+        <p id="poem-draft" class="poem-draft"><span> I'm not looking for a destiny. </span><br><span>But a better way out.</span><br><span>Destiny is a strange term</span><br><span>To describe what life is all about.</span><br><span>Life is meaningful only in the moment you live it.</span><br><span>So why hold onto grudges that make it hard to pivot</span><br><span>But the truth is all about making sense of who we are.</span><br><span>Cherish each moment and then you'll go really far.</span></p>
 
         <div class="highlight"><pre><code class="language-text" data-lang="text">
         <button type="button" class="collapsible">Write a poetic sentence that contains the word 'destiny'</button>
@@ -63,7 +63,7 @@
         </div>
         <button type="button" class="collapsible">Write a metaphor about 'destiny'</button>
         <div class="content">
-        <p>Destiny is a cruel mistress and I've been teasing her mercilessly.</p><br> <p>Destiny is a sham.</p>
+        <p>Destiny is a cruel mistress and I've been teasing her mercilessly.</p><br> <p>Destiny is a sham.</p><br> <p> Destiny is a strange term </p>
         </div>
         <button type="button" class="collapsible">
         Write a poetic sentence that contains the word 'meaningful'
@@ -86,12 +86,68 @@
 
         for (i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function() {
+            // alert("Called")
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (content.style.display === "block") {
             content.style.display = "none";
+            var draft = document.getElementById("poem-draft");
+            var lines = draft.innerHTML.split("<br>")
+            var options = content.innerHTML.split("<br>");
+            var updated = ""
+            for(j=0; j<lines.length; j++) {
+                var line = lines[j].replace( /(<([^>]+)>)/ig, '') //eplace("<span>", "").replace("</span>", "");
+                var found = false;
+                for(k=0; k<options.length; k++) {
+                    var option = options[k].replace("<p>", "").replace("</p>", "");
+                    // alert(option)
+                    // alert(line)
+                    // alert(option.trim() == line.trim());
+                    if(option.trim() == line.trim()) {
+                        found = true;
+                        // alert("Found")
+                    }
+                    // else { }
+                }
+                if(found) {
+                        updated+='<span>'+line.trim()+'</span><br>'
+                }
+                else {
+                    updated+=lines[j]+"<br>";
+                }
+            }
+            // alert(updated)
+            draft.innerHTML = updated;
             } else {
+            // alert("Else")
             content.style.display = "block";
+            var draft = document.getElementById("poem-draft");
+            var lines = draft.innerHTML.split("<br>")
+            var options = content.innerHTML.split("<br>");
+            var updated = ""
+            for(j=0; j<lines.length; j++) {
+                var line = lines[j].replace("<span>", "").replace("</span>", "");
+                var found = false;
+                for(k=0; k<options.length; k++) {
+                    var option = options[k].replace("<p>", "").replace("</p>", "");
+                    // alert(option)
+                    // alert(line)
+                    // alert(option.trim() == line.trim());
+                    if(option.trim() == line.trim()) {
+                        found = true;
+                        // alert("Found")
+                    }
+                    // else { }
+                }
+                if(found) {
+                        updated+='<span style="background-color:#ddd;">'+line.trim()+'</span><br>'
+                }
+                else {
+                    updated+='<span>'+line.trim()+'</span><br>'
+                }
+            }
+            draft.innerHTML = updated;
+            // alert(lines);
             }
             });
         }
