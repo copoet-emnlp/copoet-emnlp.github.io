@@ -55,6 +55,9 @@
         <div class="highlight"><pre><code class="language-text" data-lang="text"><h3>Instructions</h3>
         </code></pre></div>
         <p id="poem-draft" class="poem-draft"><span> I'm not looking for a destiny. </span><br><span>But a better way out.</span><br><span>Destiny is a strange term</span><br><span>To describe what life is all about.</span><br><span>Life is meaningful only in the moment you live it.</span><br><span>So why hold onto grudges that make it hard to pivot</span><br><span>But the truth is all about making sense of who we are.</span><br><span>Cherish each moment and then you'll go really far.</span></p>
+        <p hidden id="poem-draft-plain" class="poem-draft-plain"><span> I'm not looking for a destiny. </span><br><span>But a better way out.</span><br><span>Destiny is a strange term</span><br><span>To describe what life is all about.</span><br><span>Life is meaningful only in the moment you live it.</span><br><span>So why hold onto grudges that make it hard to pivot</span><br><span>But the truth is all about making sense of who we are.</span><br><span>Cherish each moment and then you'll go really far.</span></p>
+        <p hidden id="poem-draft-highlighted" class="poem-draft-highlighted"><span  style="background-color:#ddd;"> I'm not looking for a destiny. </span><br><span>But a better way out.</span><br><span  style="background-color:#ddd;">Destiny is a strange term</span><br><span>To describe what </span><span  style="background-color:#ddd;">life is all about.</span><br><span>Life is meaningful only in the moment you live it.</span><br><span>So why hold onto grudges that make it hard to pivot</span><br><span>But the truth is all about making sense of who we are.</span><br><span>Cherish each moment and then you'll go really far.</span></p>
+        <p hidden id="matched-instructions" class="matched-instructions">I'm not looking for a destiny.<br>None<br>Destiny is a strange term<br>And that's what life is all about.<br>None<br>None<br>None<br>None</p>
 
         <div class="highlight"><pre><code class="language-text" data-lang="text">
         <button type="button" class="collapsible">Write a poetic sentence that contains the word 'destiny'</button>
@@ -75,7 +78,7 @@
         Write a poetic sentence ending in 'about'
         </button>
         <div class="content">
-        <p>And what the genii of the place is all about. </p><br> <p>And if a man is walking about.</p>
+        <p>And what the genii of the place is all about. </p><br> <p>And if a man is walking about.</p><br><p>And that's what life is all about.</p>
         </div>
         </code></pre></div>
         </article>
@@ -93,24 +96,30 @@
             content.style.display = "none";
             var draft = document.getElementById("poem-draft");
             var lines = draft.innerHTML.split("<br>")
+            var plain_lines = document.getElementById("poem-draft-plain").innerHTML.split("<br>")
+            var matched_inst = document.getElementById("matched-instructions").innerHTML.split("<br>")
             var options = content.innerHTML.split("<br>");
             var updated = ""
-            for(j=0; j<lines.length; j++) {
-                var line = lines[j].replace( /(<([^>]+)>)/ig, '') //eplace("<span>", "").replace("</span>", "");
+            // for(j=0; j<lines.length; j++) {
+            for(j=0; j<matched_inst.length; j++) {
+                // var line = lines[j].replace( /(<([^>]+)>)/ig, '') //eplace("<span>", "").replace("</span>", "");
+                var current_inst = matched_inst[j];
                 var found = false;
                 for(k=0; k<options.length; k++) {
                     var option = options[k].replace("<p>", "").replace("</p>", "");
                     // alert(option)
                     // alert(line)
                     // alert(option.trim() == line.trim());
-                    if(option.trim() == line.trim()) {
+                    // if(option.trim() == line.trim()) {
+                    if(option.trim() == current_inst.trim()) {
                         found = true;
                         // alert("Found")
                     }
                     // else { }
                 }
                 if(found) {
-                        updated+='<span>'+line.trim()+'</span><br>'
+                        updated+=plain_lines[j]+'<br>';
+                        // updated+='<span>'+line.trim()+'</span><br>'
                 }
                 else {
                     updated+=lines[j]+"<br>";
@@ -123,27 +132,33 @@
             content.style.display = "block";
             var draft = document.getElementById("poem-draft");
             var lines = draft.innerHTML.split("<br>")
+            var highlighted_lines = document.getElementById("poem-draft-highlighted").innerHTML.split("<br>")
+            var matched_inst = document.getElementById("matched-instructions").innerHTML.split("<br>")
             var options = content.innerHTML.split("<br>");
             var updated = ""
-            for(j=0; j<lines.length; j++) {
-                var line = lines[j].replace("<span>", "").replace("</span>", "");
+            // for(j=0; j<lines.length; j++) {
+            for(j=0; j<matched_inst.length; j++) {
+                // var line = lines[j].replace("<span>", "").replace("</span>", "");
+                var current_inst = matched_inst[j];
                 var found = false;
                 for(k=0; k<options.length; k++) {
                     var option = options[k].replace("<p>", "").replace("</p>", "");
                     // alert(option)
                     // alert(line)
                     // alert(option.trim() == line.trim());
-                    if(option.trim() == line.trim()) {
+                    if(option.trim() == current_inst.trim()) {
                         found = true;
                         // alert("Found")
                     }
                     // else { }
                 }
                 if(found) {
-                        updated+='<span style="background-color:#ddd;">'+line.trim()+'</span><br>'
+                        // updated+='<span style="background-color:#ddd;">'+line.trim()+'</span><br>'
+                        updated+=highlighted_lines[j]+'<br>';
                 }
                 else {
-                    updated+='<span>'+line.trim()+'</span><br>'
+                    // updated+='<span>'+line.trim()+'</span><br>'
+                    updated+=lines[j]+'<br>'
                 }
             }
             draft.innerHTML = updated;
